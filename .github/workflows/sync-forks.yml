@@ -14,6 +14,7 @@ jobs:
       fail-fast: false       # 하나가 실패해도 나머지는 계속
       matrix:
         fork:
+          - SehyeokKim/caveman
           - SehyeokKim/anti-slop
           - SehyeokKim/im-not-ai
           # 외부 플러그인을 fork할 때마다 여기에 한 줄씩 추가
