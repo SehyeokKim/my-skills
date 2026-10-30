@@ -1,0 +1,24 @@
+# 외부 플러그인 fork를 원본(upstream)과 매일 동기화한다.
+# 원본이 삭제되거나 비공개로 바뀌면 동기화만 실패하고 fork는 마지막 상태로 남는다.
+name: Sync plugin forks
+
+on:
+  schedule:
+    - cron: "17 18 * * *"   # 매일 03:17 KST (UTC 18:17)
+  workflow_dispatch: {}      # Actions 탭에서 수동 실행
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false       # 하나가 실패해도 나머지는 계속
+      matrix:
+        fork:
+          - SehyeokKim/anti-slop
+          - SehyeokKim/im-not-ai
+          # 외부 플러그인을 fork할 때마다 여기에 한 줄씩 추가
+    steps:
+      - name: Sync ${{ matrix.fork }}
+        env:
+          GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+        run: gh repo sync "${{ matrix.fork }}"
