@@ -1,5 +1,6 @@
 # 외부 플러그인 fork를 원본(upstream)과 매일 동기화한다.
 # 원본이 삭제되거나 비공개로 바뀌면 동기화만 실패하고 fork는 마지막 상태로 남는다.
+# 대상은 sehyeok-plugins org의 fork 전체라서 fork를 추가해도 이 파일은 고치지 않는다.
 name: Sync plugin forks
 
 on:
@@ -10,16 +11,25 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false       # 하나가 실패해도 나머지는 계속
-      matrix:
-        fork:
-          - SehyeokKim/caveman
-          - SehyeokKim/anti-slop
-          - SehyeokKim/im-not-ai
-          # 외부 플러그인을 fork할 때마다 여기에 한 줄씩 추가
+    env:
+      GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+      ORG: sehyeok-plugins
     steps:
-      - name: Sync ${{ matrix.fork }}
-        env:
-          GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
-        run: gh repo sync "${{ matrix.fork }}"
+      - name: Sync all forks in org
+        run: |
+          repos=$(gh repo list "$ORG" --fork --limit 1000 --json nameWithOwner --jq '.[].nameWithOwner')
+          if [ -z "$repos" ]; then
+            echo "::error::$ORG에서 fork를 찾지 못했다. 토큰 권한을 확인한다."
+            exit 1
+          fi
+          failed=0
+          for repo in $repos; do
+            echo "::group::$repo"
+            # 하나가 실패해도 나머지는 계속 동기화하고, 마지막에 실패로 끝낸다.
+            if ! gh repo sync "$repo"; then
+              echo "::error::동기화 실패: $repo"
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $failed

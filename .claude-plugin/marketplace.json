@@ -9,7 +9,7 @@
       "name": "caveman",
       "source": {
         "source": "github",
-        "repo": "SehyeokKim/caveman"
+        "repo": "sehyeok-plugins/caveman"
       },
       "description": "[외부·MIT] 원시인 말투로 짧게 답해서 출력 토큰을 줄이는 모드. /caveman. 원본: JuliusBrussee/caveman"
     },
@@ -17,7 +17,7 @@
       "name": "antislop",
       "source": {
         "source": "github",
-        "repo": "SehyeokKim/anti-slop"
+        "repo": "sehyeok-plugins/anti-slop"
       },
       "description": "[외부·MIT] AI 코딩 에이전트가 만드는 뻔한 UI·문구·코드(AI slop)를 막는 규칙 모음 (skill 6개). 원본: miqdadbadjuber/anti-slop"
     },
@@ -25,7 +25,7 @@
       "name": "humanize-korean",
       "source": {
         "source": "github",
-        "repo": "SehyeokKim/im-not-ai"
+        "repo": "sehyeok-plugins/im-not-ai"
       },
       "description": "[외부·MIT] AI가 쓴 한글을 사람이 쓴 글처럼 윤문 — 번역투·기계적 병렬 등 85개 AI 티 패턴 탐지·재작성. /humanize, /humanize-scan, /humanize-redo. 원본: epoko77-ai/im-not-ai"
     }
