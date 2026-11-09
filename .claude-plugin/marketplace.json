@@ -28,6 +28,23 @@
         "repo": "sehyeok-plugins/im-not-ai"
       },
       "description": "[외부·MIT] AI가 쓴 한글을 사람이 쓴 글처럼 윤문 — 번역투·기계적 병렬 등 85개 AI 티 패턴 탐지·재작성. /humanize, /humanize-scan, /humanize-redo. 원본: epoko77-ai/im-not-ai"
+    },
+    {
+      "name": "ponytail",
+      "source": {
+        "source": "github",
+        "repo": "sehyeok-plugins/ponytail"
+      },
+      "description": "[외부·MIT] 가장 게으른 시니어 개발자처럼, 동작하는 해결책 중 가장 짧고 단순한 것만 쓰게 하는 모드. YAGNI, 표준 라이브러리 우선. /ponytail. 원본: dietrichgebert/ponytail"
+    },
+    {
+      "name": "headroom",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sehyeok-plugins/headroom.git",
+        "path": "plugins/headroom-agent-hooks"
+      },
+      "description": "[외부·Apache-2.0] 세션 시작 때 headroom 프록시를 켜서 LLM 입력 토큰을 압축한다. headroom-ai CLI를 따로 설치하고 headroom init을 해야 동작한다. 원본: headroomlabs-ai/headroom"
     }
   ]
 }

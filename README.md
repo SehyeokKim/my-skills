@@ -11,9 +11,27 @@ fork는 GitHub Actions가 매일 원본과 동기화한다.
 | caveman | 원시인 말투로 짧게 답해서 출력 토큰을 줄이는 모드. 기술적인 정확도는 유지한다. | `/caveman:caveman` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | MIT |
 | antislop | AI 코딩 에이전트가 만드는 뻔한 UI·문구·코드(AI slop)를 막는 규칙 모음. skill 6개. | 자동 적용 | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | MIT |
 | humanize-korean | AI가 쓴 한글을 사람이 쓴 글처럼 윤문. 번역투·기계적 병렬·피동태 남용 등 85개 AI 티 패턴을 찾아 문체만 고친다. 내용은 안 바꾼다. | `/humanize`, `/humanize-scan`(점검만), `/humanize-redo`(2차 윤문) | [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai) | MIT |
+| ponytail | 가장 짧고 단순한 해결책만 쓰게 하는 모드. 요청하지 않은 추상화를 막고 표준 라이브러리를 먼저 쓴다. | `/ponytail` | [dietrichgebert/ponytail](https://github.com/dietrichgebert/ponytail) | MIT |
+| headroom | 세션을 시작할 때 headroom 프록시를 켜서 LLM 입력 토큰을 압축한다. 아래 "headroom 준비"를 먼저 한다. | 자동 적용 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | Apache-2.0 |
 
 fork는 모두 `https://github.com/sehyeok-plugins/<저장소>`에 있다.
 skill 명령 이름은 각 플러그인이 정하므로 설치 후 `/`를 눌러 확인한다.
+
+### headroom 준비
+
+headroom 플러그인은 hook만 들어 있고 압축은 `headroom` CLI가 한다. PC마다 한 번 CLI를 설치하고 `headroom init`으로 배포를 만든다.
+
+```bash
+uv tool install --python 3.13 "headroom-ai[all]"
+headroom init     # 옵션은 headroom init --help로 확인
+```
+
+CLI가 없으면 hook은 안내 메시지만 내고 넘어가며 세션은 막지 않는다.
+
+원본 레포에는 플러그인이 2개 더 있지만 이 마켓플레이스에는 넣지 않았다. 필요하면 원본 마켓플레이스(`/plugin marketplace add headroomlabs-ai/headroom`)에서 설치한다.
+
+- `headroom-skill`: Python·TypeScript 앱에 `headroom-ai`의 `compress()`를 붙이는 방법을 알려 주는 skill. Claude Code 자체의 토큰은 줄이지 않는다.
+- `headroom-snip`: 프록시가 줄인 토큰을 프롬프트 위 막대와 `/headroom` 창으로 보여 준다. 프록시가 켜져 있어야 한다.
 
 ## 따로 설치하는 도구
 
@@ -23,6 +41,7 @@ skill 명령 이름은 각 플러그인이 정하므로 설치 후 `/`를 눌러
 | :- | :- | :- | :- |
 | ARES | 보안 점검용 독립 프로그램(서버·웹 화면). Claude Code 플러그인이 아니다. | [Mafifrizi/ARES](https://github.com/Mafifrizi/ARES) | MIT |
 | rea | 리버스 엔지니어링 분석 도구. 플러그인 파일이 있지만 별도 실행 환경이 필요할 수 있다. | [morluto/rea](https://github.com/morluto/rea) | MIT |
+| graphify | 코드베이스·문서·SQL 스키마·PDF를 질의 가능한 지식 그래프로 만든다. `uv tool install graphifyy` 후 `graphify install`을 하면 `/graphify` skill이 등록된다. | [graphify-labs/graphify](https://github.com/graphify-labs/graphify) | Apache-2.0 |
 
 ## 설치
 
@@ -31,6 +50,8 @@ claude plugin marketplace add SehyeokKim/my-skills
 claude plugin install caveman@sehyeok-skills
 claude plugin install antislop@sehyeok-skills
 claude plugin install humanize-korean@sehyeok-skills
+claude plugin install ponytail@sehyeok-skills
+claude plugin install headroom@sehyeok-skills
 ```
 
 자동 업데이트: Claude Code에서 `/plugin` → Marketplaces → sehyeok-skills → Enable auto-update.
