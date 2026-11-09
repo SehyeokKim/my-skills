@@ -43,6 +43,27 @@ CLI가 없으면 hook은 안내 메시지만 내고 넘어가며 세션은 막�
 | rea | 리버스 엔지니어링 분석 도구. 플러그인 파일이 있지만 별도 실행 환경이 필요할 수 있다. | [morluto/rea](https://github.com/morluto/rea) | MIT |
 | graphify | 코드베이스·문서·SQL 스키마·PDF를 질의 가능한 지식 그래프로 만든다. `uv tool install graphifyy` 후 `graphify install`을 하면 `/graphify` skill이 등록된다. | [graphify-labs/graphify](https://github.com/graphify-labs/graphify) | Apache-2.0 |
 
+## 검토한 저장소
+
+설치 여부를 검토한 저장소와 판단 결과(2026-11-09 기준). 같은 저장소를 다시 검토하지 않도록 남겨 둔다.
+
+| 저장소 | 설명 | 판단 | 라이선스 |
+| :- | :- | :- | :- |
+| [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | 코드베이스 전체 보안 감사 skill. 찾은 취약점을 증거, 재현, 수정안과 함께 JSON 보고서로 남긴다. | 추가 후보 | MIT |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | 프론트엔드 디자인 다듬기. `/impeccable polish·audit·critique` 등 명령 24개로 UI를 손보고 리뷰한다. | 추가 후보 | Apache-2.0 |
+| [obra/superpowers](https://github.com/obra/superpowers) | 개발 절차 skill 묶음. 브레인스토밍, 계획, TDD, 서브에이전트 실행 순서로 작업하게 한다. | 추가 후보 | MIT |
+| [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) | Karpathy가 지적한 LLM 코딩 실수를 막는 지침. 가정을 먼저 밝히고, 고칠 곳만 고치고, 검증하게 한다. | 선택 (ponytail과 일부 겹침) | MIT (README에만 표기) |
+| [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | HTML로 영상을 만드는 skill 모음. 자막, 모션, 슬라이드쇼를 만들고 렌더링한다. | 영상 작업이 있을 때 | Apache-2.0 |
+| [heydamir/unslop](https://github.com/heydamir/unslop) | AI가 만든 티가 나는 UI를 찾아 디자인 방향을 정하고 화면을 단계별로 고친다. 수정 과정을 영상으로 만들 수 있다. | 보류 (impeccable과 겹침) | CC-BY-4.0 |
+| [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | 회사 웹사이트·랜딩 페이지 제작용 디자인 skill. 실제 브라우저로 결과를 확인한다. | 보류 (antislop, impeccable과 겹침) | MIT |
+| [panniantong/agent-reach](https://github.com/panniantong/agent-reach) | 여러 플랫폼 글을 읽기만 하는 CLI. Twitter, Reddit, YouTube 자막, 샤오홍슈, B站 등을 지원한다. | 따로 설치 | MIT |
+| [nationalsecurityagency/ghidra](https://github.com/nationalsecurityagency/ghidra) | NSA가 만든 리버스 엔지니어링 프로그램. rea가 바이너리를 분석할 때 쓴다. | 따로 설치 (rea용) | Apache-2.0 |
+| [affaan-m/ecc](https://github.com/affaan-m/ecc) | skill 314개, agent 71개, hook을 한꺼번에 넣는 대형 하네스. | 제외 (hook 과다, 컨텍스트 부담) | MIT |
+| [nyldn/claude-octopus](https://github.com/nyldn/claude-octopus) | Codex, Copilot 등 여러 모델에 같은 작업을 시켜 서로 다른 의견을 찾아낸다. | 제외 (외부 모델 구독 필요) | MIT |
+| [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | ADHD 독자용 출력 스타일. 다음 할 일을 먼저 말하고 단계에 번호를 붙인다. | 제외 (caveman과 충돌) | MIT |
+| [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) | 무료 LLM API 수십 개를 OpenAI 호환 엔드포인트 하나로 묶는 프록시 서버. | 제외 (Claude Code와 무관) | MIT |
+| [debpalash/voicestudio](https://github.com/debpalash/voicestudio) | 로컬에서 돌리는 음성 앱. 목소리 복제, 더빙, 받아쓰기, 오디오북을 만든다. | 제외 (Claude Code와 무관) | AGPL-3.0 |
+
 ## 설치
 
 ```bash
